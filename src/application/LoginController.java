@@ -1,15 +1,21 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
 	private LoginModel loginModel = new LoginModel();
@@ -25,12 +31,21 @@ public class LoginController implements Initializable {
 			if (loginModel.isLogin(usernameField.getText(), passwordField.getText())) {
 				logInStatus.setText("login success!");
 			} else {
-				logInStatus.setText("Login failure!");
+				logInStatus.setText("Email or Password Incorrect");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	
+	public void SignUp(ActionEvent event) throws IOException {
+		Parent signUpRoot = FXMLLoader.load(getClass().getResource("CreateAccountView.fxml"));
+			Scene signUpView = new Scene(signUpRoot);
+			Stage window =  (Stage) ((Node)(event.getSource())).getScene().getWindow();
+			window.setScene(signUpView);
+//			window.show();
 	}
 
 	// required when implements initializable
