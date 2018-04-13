@@ -7,16 +7,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 
-public class Main extends Application {
+public class HomeMain extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("LoginView.fxml")); //used to tie in ONE view
+			Parent root = FXMLLoader.load(getClass().getResource("HomeView.fxml")); //used to tie in ONE view
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			primaryStage.setResizable(false);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
+	private static Scene scene;
 	private LoginModel loginModel = new LoginModel();
 	@FXML // visable to scene builder
 	private Label logInStatus;
@@ -25,6 +26,16 @@ public class LoginController implements Initializable {
 	private TextField usernameField;
 	@FXML
 	private PasswordField passwordField;
+	
+//	public static Scene getScene() {
+//		if (scene == null) {
+//			Parent root = FXMLLoader.load(getClass().getResource("LoginView.fxml")); //used to tie in ONE view
+//			Scene scene = new Scene(root);
+//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+//		
+//		}
+//		return scene;
+//	}
 	
 	public void login(ActionEvent event)  {
 		try {
