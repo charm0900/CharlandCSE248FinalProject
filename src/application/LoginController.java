@@ -18,9 +18,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
-	private static Scene scene;
 	private LoginModel loginModel = new LoginModel();
-	@FXML // visable to scene builder
+	private Cart cart = new Cart();
+	private Customer customer = new Customer();;
+	@FXML 
 	private Label logInStatus;
 	@FXML
 	private TextField usernameField;
@@ -40,7 +41,10 @@ public class LoginController implements Initializable {
 	public void login(ActionEvent event)  {
 		try {
 			if (loginModel.isLogin(usernameField.getText(), passwordField.getText())) {
-				logInStatus.setText("login success!");
+				System.out.println("login success!");
+				customer.setEmail(usernameField.getText());
+				customer.setPassword(passwordField.getText());
+				logInToHome();
 			} else {
 				logInStatus.setText("Email or Password Incorrect");
 			}
@@ -52,6 +56,7 @@ public class LoginController implements Initializable {
 	
 	
 	public void SignUp(ActionEvent event) throws IOException {
+		loginModel.closeConnection();
 		Parent signUpRoot = FXMLLoader.load(getClass().getResource("CreateAccountView.fxml"));
 			Scene signUpView = new Scene(signUpRoot);
 			Stage window =  (Stage) ((Node)(event.getSource())).getScene().getWindow();
@@ -66,6 +71,20 @@ public class LoginController implements Initializable {
 			System.out.println("connected");
 		} else {
 			System.out.println("not connected");
+		}
+	}
+	
+	private void logInToHome() {
+		loginModel.closeConnection();
+		HomeController.passInCustomerAndCart(customer, cart);
+		try {
+			Parent signUpRoot = FXMLLoader.load(getClass().getResource("HomeView.fxml"));
+			Scene signUpView = new Scene(signUpRoot);
+			Stage window =  (Stage) passwordField.getScene().getWindow();
+			window.setScene(signUpView);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

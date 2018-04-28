@@ -15,6 +15,15 @@ public class CreateAccountModel {
 			System.exit(1);
 		}
 	}
+	
+    public void closeConnection() {
+    	try {
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 
 	public boolean createAccount(String email, String password, String fName, String lName) throws SQLException {
 		PreparedStatement preparedStatment = null;

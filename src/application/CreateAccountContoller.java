@@ -53,10 +53,10 @@ public class CreateAccountContoller {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	public void returnToLogin(ActionEvent event) throws IOException {
+		createAccountModel.closeConnection();
 		Parent loginRoot = FXMLLoader.load(getClass().getResource("LoginView.fxml"));
 		Scene loingView = new Scene(loginRoot);
 		Stage window = (Stage) ((Node) (event.getSource())).getScene().getWindow();

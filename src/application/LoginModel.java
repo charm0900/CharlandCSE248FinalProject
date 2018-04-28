@@ -15,6 +15,15 @@ public class LoginModel {
 		}
 	}
 	
+    public void closeConnection() {
+    	try {
+			connection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+	
 	public boolean isDBConnected() {
 		try {
 			return !connection.isClosed();
@@ -46,6 +55,8 @@ public class LoginModel {
 		}
 		return false;
 	}
+	
+	
 
 
 }

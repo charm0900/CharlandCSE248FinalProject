@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="1048.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CheckOutController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="62.0" layoutY="74.0" stroke="BLACK" strokeType="INSIDE" width="850.0" />
+      <ImageView fx:id="restore" fitHeight="116.0" fitWidth="374.0" layoutX="238.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../restoreLogo.png" />
+         </image></ImageView>
+      <MenuBar layoutY="117.0" prefHeight="27.0" prefWidth="850.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Home" />
+          <Menu mnemonicParsing="false" text="          Departments          ">
+            <items>
+                <MenuItem mnemonicParsing="false" text="Appliances" />
+                <MenuItem mnemonicParsing="false" text="Cabinets" />
+                  <MenuItem mnemonicParsing="false" text="Doors" />
+                  <MenuItem mnemonicParsing="false" text="Windows" />
+                  <MenuItem mnemonicParsing="false" text="Furniture" />
+                  <MenuItem mnemonicParsing="false" text="Plumbing Items" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false">
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../searchIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Menu>
+            <Menu mnemonicParsing="false">
+               <graphic>
+                  <TextField prefHeight="25.0" prefWidth="310.0" />
+               </graphic>
+            </Menu>
+            <Menu mnemonicParsing="false" text="                  Account                  ">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="         ">
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../cartIcon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Menu>
+        </menus>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </MenuBar>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutY="548.0" stroke="BLACK" strokeType="INSIDE" width="850.0" />
+      <Label fx:id="cartNumber" layoutX="813.0" layoutY="123.0" prefHeight="20.0" prefWidth="34.0" text="0" />
+      <Hyperlink layoutX="45.0" layoutY="560.0" prefHeight="28.0" prefWidth="93.0" text="Track Orders" textFill="#262323" underline="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Hyperlink>
+      <Label layoutX="581.0" layoutY="564.0" text="Follow us on FaceBook and Instagram!" underline="true">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="TOP" layoutX="332.0" layoutY="574.0" prefHeight="20.0" prefWidth="158.0" text="Oline System Created by Matthew Charland" wrapText="true">
+         <font>
+            <Font size="8.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutY="151.0" prefHeight="632.0" prefWidth="866.0">
+         <content>
+            <AnchorPane prefHeight="1111.0" prefWidth="834.0">
+               <children>
+                  <Label layoutX="71.0" layoutY="23.0" prefHeight="42.0" prefWidth="171.0" text="Shipping Info:">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Line endX="600.0" layoutX="157.0" layoutY="66.0" startX="-100.0" />
+                  <TextField fx:id="addressTF" layoutX="129.0" layoutY="118.0" prefHeight="34.0" prefWidth="533.0" promptText="Street address, P.0. box, Appartment, building, floor, etc." />
+                  <Label layoutX="129.0" layoutY="99.0" prefHeight="18.0" prefWidth="72.0" text="Address:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="129.0" layoutY="171.0" prefHeight="18.0" prefWidth="72.0" text="City:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="cityTF" layoutX="129.0" layoutY="189.0" prefHeight="34.0" prefWidth="533.0" />
+                  <Label layoutX="129.0" layoutY="241.0" prefHeight="18.0" prefWidth="72.0" text="State:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="stateTF" layoutX="129.0" layoutY="260.0" prefHeight="34.0" prefWidth="533.0" />
+                  <Label layoutX="129.0" layoutY="310.0" prefHeight="18.0" prefWidth="94.0" text="Phone Number:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="228.0" layoutY="311.0" text="(Optional)" />
+                  <TextField fx:id="phoneNumbTF" layoutX="129.0" layoutY="329.0" prefHeight="34.0" prefWidth="533.0" />
+                  <RadioButton fx:id="economyShipRB" layoutX="360.0" layoutY="397.0" mnemonicParsing="false" onAction="#radioButtonChanged" prefHeight="18.0" prefWidth="123.0" text="14 Days Shipping">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton fx:id="standardShipRB" layoutX="360.0" layoutY="443.0" mnemonicParsing="false" onAction="#radioButtonChanged" prefHeight="18.0" prefWidth="126.0" text="7 Days Shipping">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Label layoutX="129.0" layoutY="379.0" prefHeight="18.0" prefWidth="158.0" text="Choose a delivery option:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="382.0" layoutY="415.0" prefHeight="18.0" prefWidth="94.0" text="Free Economy" />
+                  <Label layoutX="382.0" layoutY="461.0" prefHeight="18.0" prefWidth="103.0" text="Standard $ 10.99" />
+                  <RadioButton fx:id="expeditedShipRB" layoutX="360.0" layoutY="489.0" mnemonicParsing="false" onAction="#radioButtonChanged" prefHeight="18.0" prefWidth="126.0" text="4 Days Shipping">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </RadioButton>
+                  <Label layoutX="382.0" layoutY="507.0" prefHeight="18.0" prefWidth="103.0" text="Expedited $ 20.99" />
+                  <Label layoutX="79.0" layoutY="570.0" prefHeight="42.0" prefWidth="222.0" text="Payment Method:">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <Line endX="600.0" layoutX="156.0" layoutY="612.0" startX="-100.0" />
+                  <Label layoutX="129.0" layoutY="653.0" prefHeight="18.0" prefWidth="126.0" text="First Name on Card:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="ccHolderFnameTF" layoutX="129.0" layoutY="671.0" prefHeight="34.0" prefWidth="533.0" />
+                  <Label layoutX="129.0" layoutY="728.0" prefHeight="18.0" prefWidth="126.0" text="Last Name on Card:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="ccHolderLnameTF" layoutX="129.0" layoutY="746.0" prefHeight="34.0" prefWidth="533.0" />
+                  <Label layoutX="129.0" layoutY="804.0" prefHeight="18.0" prefWidth="126.0" text="Card Number:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="129.0" layoutY="910.0" prefHeight="18.0" prefWidth="126.0" text="Expiration date:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="ccNumTF" layoutX="130.0" layoutY="823.0" prefHeight="34.0" prefWidth="533.0" />
+                  <TextField fx:id="ccccvNumTF" layoutX="450.0" layoutY="930.0" prefHeight="34.0" prefWidth="111.0" />
+                  <ImageView fitHeight="28.0" fitWidth="208.0" layoutX="129.0" layoutY="866.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../cards_logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="450.0" layoutY="910.0" prefHeight="18.0" prefWidth="126.0" text="Security code:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="monthCB" layoutX="135.0" layoutY="934.0" prefHeight="26.0" prefWidth="109.0" promptText="MM" />
+                  <ComboBox fx:id="yearCB" layoutX="272.0" layoutY="934.0" prefHeight="26.0" prefWidth="103.0" promptText="YYYY" />
+                  <Button layoutX="135.0" layoutY="1000.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="256.0" text="Review Your Order">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>
