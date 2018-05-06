@@ -19,13 +19,19 @@ public class SearchModel {
 	private String department;
 	
 	public SearchModel() {
+		openConn();
+	}
+	
+	private void openConn() {
 		connection = SQLiteHelperClass.conect();
 		if (connection == null) {
 			System.exit(1);
 		}
 	}
 	
+	
 	public ObservableList<Product> searchByDepartment() {
+		openConn();
 		ObservableList<Product> items = FXCollections.observableArrayList();
 		PreparedStatement preparedStatment = null;
 		ResultSet rs = null;
@@ -56,6 +62,7 @@ public class SearchModel {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		closeConnection();
 		return items;
 	}
 
@@ -67,6 +74,10 @@ public class SearchModel {
 //        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
 //        return sDate;
 //    }
+	
+	public void close(Cart cart, Customer customer) {
+		
+	}
     
     public void closeConnection() {
     	try {

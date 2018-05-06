@@ -1,15 +1,20 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.stage.Stage;
 
 public class CheckOutController implements Initializable {
 	private CheckOutModel checkOutModel = new CheckOutModel();
@@ -17,7 +22,9 @@ public class CheckOutController implements Initializable {
 	private static Customer customer;
 	private ToggleGroup shippingGroup = new ToggleGroup();
 	private double shippingCost = 0.0;
-	
+	private ShippingInfo sInfo;
+	private PaymentMethod pInfo;
+
 	@FXML
 	private TextField addressTF;
 	@FXML
@@ -54,22 +61,20 @@ public class CheckOutController implements Initializable {
 		setUpRadioButtons();
 		setUpComboBox();
 	}
-	
+
 	private void setUpComboBox() {
-		monthCB.getItems().addAll("01", "02", "03", "04", "05", "06", "07", "08",
-				"09", "10", "11", "12");
-		yearCB.getItems().addAll("2018", "2019", "2020", "2021", "2022", "2023", "2024",
-				"2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033",
-				"2034", "2035");
+		monthCB.getItems().addAll("01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12");
+		yearCB.getItems().addAll("2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028",
+				"2029", "2030", "2031", "2032", "2033", "2034", "2035");
 	}
 
 	private void setUpRadioButtons() {
-			economyShipRB.setToggleGroup(shippingGroup);
-			standardShipRB.setToggleGroup(shippingGroup);
-			expeditedShipRB.setToggleGroup(shippingGroup);
-			shippingGroup.selectToggle(economyShipRB);
+		economyShipRB.setToggleGroup(shippingGroup);
+		standardShipRB.setToggleGroup(shippingGroup);
+		expeditedShipRB.setToggleGroup(shippingGroup);
+		shippingGroup.selectToggle(economyShipRB);
 	}
-	
+
 	@FXML
 	public void radioButtonChanged() {
 		if (economyShipRB.isSelected())
@@ -82,11 +87,11 @@ public class CheckOutController implements Initializable {
 
 	private void autoFillInfo() {
 		if (customer.getShippingId() != 0) {
-			ShippingInfo sInfo = checkOutModel.getShippingInfo(customer);
+			sInfo = checkOutModel.getShippingInfo(customer);
 			autoFillShipping(sInfo);
 		}
 		if (customer.getPaymentId() != 0) {
-			PaymentMethod pInfo = checkOutModel.getPayMethod(customer);
+			pInfo = checkOutModel.getPayMethod(customer);
 			autoFillPaymentMethod(pInfo);
 		}
 	}
@@ -107,6 +112,30 @@ public class CheckOutController implements Initializable {
 		cityTF.setText(sInfo.getCity());
 		stateTF.setText(sInfo.getState());
 		phoneNumbTF.setText(sInfo.getPhoneNum());
+	}
+
+	@FXML
+	public void goToOrderSummary() {
+		if (checkIfEverythingFilledOut()) {
+			OrderSummaryController.passInCustomerAndCart(customer, cart);
+			OrderSummaryController.passInCheckOutInfo(sInfo, pInfo, shippingCost);
+			checkOutModel.closeConnection();
+			try {
+				Parent orderRoot = FXMLLoader.load(getClass().getResource("OrderSummaryView.fxml"));
+				Scene orderView = new Scene(orderRoot);
+				Stage window = (Stage) (addressTF.getScene().getWindow());
+				window.setScene(orderView);
+				window.show();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private boolean checkIfEverythingFilledOut() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 	public static void passInCustomerAndCart(Customer cus, Cart sCart) {

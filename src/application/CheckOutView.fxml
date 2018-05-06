@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1048.0" prefWidth="866.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CheckOutController">
+<AnchorPane prefHeight="594.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CheckOutController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="62.0" layoutY="74.0" stroke="BLACK" strokeType="INSIDE" width="850.0" />
       <ImageView fx:id="restore" fitHeight="116.0" fitWidth="374.0" layoutX="238.0" pickOnBounds="true" preserveRatio="true">
@@ -74,7 +74,7 @@
             <Insets left="20.0" />
          </padding>
       </MenuBar>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="74.0" layoutY="548.0" stroke="BLACK" strokeType="INSIDE" width="850.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutY="548.0" stroke="BLACK" strokeType="INSIDE" width="850.0" />
       <Label fx:id="cartNumber" layoutX="813.0" layoutY="123.0" prefHeight="20.0" prefWidth="34.0" text="0" />
       <Hyperlink layoutX="45.0" layoutY="560.0" prefHeight="28.0" prefWidth="93.0" text="Track Orders" textFill="#262323" underline="true">
          <font>
@@ -91,7 +91,7 @@
             <Font size="8.0" />
          </font>
       </Label>
-      <ScrollPane layoutY="151.0" prefHeight="632.0" prefWidth="866.0">
+      <ScrollPane layoutY="151.0" prefHeight="395.0" prefWidth="850.0">
          <content>
             <AnchorPane prefHeight="1111.0" prefWidth="834.0">
                <children>
@@ -191,7 +191,7 @@
                   </Label>
                   <ComboBox fx:id="monthCB" layoutX="135.0" layoutY="934.0" prefHeight="26.0" prefWidth="109.0" promptText="MM" />
                   <ComboBox fx:id="yearCB" layoutX="272.0" layoutY="934.0" prefHeight="26.0" prefWidth="103.0" promptText="YYYY" />
-                  <Button layoutX="135.0" layoutY="1000.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="256.0" text="Review Your Order">
+                  <Button layoutX="135.0" layoutY="1000.0" mnemonicParsing="false" onAction="#goToOrderSummary" prefHeight="49.0" prefWidth="256.0" text="Review Your Order">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

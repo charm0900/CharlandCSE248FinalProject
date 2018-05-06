@@ -44,5 +44,26 @@ public class Cart {
 		
 	}
 	
+	
+	public int cartContains(Product product) {
+		int i = -1;
+		for (int j = 0; j < getCartSize(); j++) {
+			if (product.getId() == cart.get(j).getId()) {
+				i = 1;
+			}
+		}
+		return i;
+	}
+	
+	public int getQuantityOfSameProduct(Product product) {
+		int counter = 0;
+		for (int i = 0; i < getCartSize(); i++) {
+			if (product.getId() == getCart().get(i).getId()) {
+				counter++;
+			}
+		}
+		return counter;
+	}
+	
 
 }
