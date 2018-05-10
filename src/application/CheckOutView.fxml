@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -27,7 +28,10 @@
          </image></ImageView>
       <MenuBar layoutY="117.0" prefHeight="27.0" prefWidth="850.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Home" />
+          <Menu mnemonicParsing="false" text="Home">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#goHome" text="Go To Home" />
+               </items></Menu>
           <Menu mnemonicParsing="false" text="          Departments          ">
             <items>
                 <MenuItem mnemonicParsing="false" text="Appliances" />
@@ -126,29 +130,29 @@
                   </Label>
                   <Label layoutX="228.0" layoutY="311.0" text="(Optional)" />
                   <TextField fx:id="phoneNumbTF" layoutX="129.0" layoutY="329.0" prefHeight="34.0" prefWidth="533.0" />
-                  <RadioButton fx:id="economyShipRB" layoutX="360.0" layoutY="397.0" mnemonicParsing="false" onAction="#radioButtonChanged" prefHeight="18.0" prefWidth="123.0" text="14 Days Shipping">
+                  <RadioButton fx:id="economyShipRB" layoutX="361.0" layoutY="406.0" mnemonicParsing="false" onAction="#radioButtonChanged" prefHeight="18.0" prefWidth="123.0" text="14 Days Shipping">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </RadioButton>
-                  <RadioButton fx:id="standardShipRB" layoutX="360.0" layoutY="443.0" mnemonicParsing="false" onAction="#radioButtonChanged" prefHeight="18.0" prefWidth="126.0" text="7 Days Shipping">
+                  <RadioButton fx:id="standardShipRB" layoutX="360.0" layoutY="451.0" mnemonicParsing="false" onAction="#radioButtonChanged" prefHeight="18.0" prefWidth="126.0" text="7 Days Shipping">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </RadioButton>
-                  <Label layoutX="129.0" layoutY="379.0" prefHeight="18.0" prefWidth="158.0" text="Choose a delivery option:">
+                  <Label layoutX="122.0" layoutY="406.0" prefHeight="18.0" prefWidth="158.0" text="Choose a delivery option:">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="382.0" layoutY="415.0" prefHeight="18.0" prefWidth="94.0" text="Free Economy" />
-                  <Label layoutX="382.0" layoutY="461.0" prefHeight="18.0" prefWidth="103.0" text="Standard $ 10.99" />
-                  <RadioButton fx:id="expeditedShipRB" layoutX="360.0" layoutY="489.0" mnemonicParsing="false" onAction="#radioButtonChanged" prefHeight="18.0" prefWidth="126.0" text="4 Days Shipping">
+                  <Label layoutX="381.0" layoutY="424.0" prefHeight="18.0" prefWidth="94.0" text="Free Economy" />
+                  <Label layoutX="377.0" layoutY="470.0" prefHeight="18.0" prefWidth="103.0" text="Standard $ 10.99" />
+                  <RadioButton fx:id="expeditedShipRB" layoutX="360.0" layoutY="495.0" mnemonicParsing="false" onAction="#radioButtonChanged" prefHeight="18.0" prefWidth="126.0" text="4 Days Shipping">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </RadioButton>
-                  <Label layoutX="382.0" layoutY="507.0" prefHeight="18.0" prefWidth="103.0" text="Expedited $ 20.99" />
+                  <Label layoutX="377.0" layoutY="514.0" prefHeight="18.0" prefWidth="103.0" text="Expedited $ 20.99" />
                   <Label layoutX="79.0" layoutY="570.0" prefHeight="42.0" prefWidth="222.0" text="Payment Method:">
                      <font>
                         <Font name="System Bold" size="24.0" />
@@ -196,6 +200,9 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
+                  <Label fx:id="checkOutStatus" layoutX="140.0" layoutY="1064.0" prefHeight="18.0" prefWidth="247.0" />
+                  <CheckBox fx:id="rememberCardCheckBox" layoutX="139.0" layoutY="974.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="158.0" text="Remember My Card" />
+                  <CheckBox fx:id="rememberAddressCheckBox" layoutX="129.0" layoutY="374.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="158.0" text="Remember My Address" />
                </children>
             </AnchorPane>
          </content>

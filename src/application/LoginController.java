@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -27,6 +28,7 @@ public class LoginController implements Initializable {
 	private TextField usernameField;
 	@FXML
 	private PasswordField passwordField;
+	
 	
 //	public static Scene getScene() {
 //		if (scene == null) {
@@ -44,6 +46,14 @@ public class LoginController implements Initializable {
 				System.out.println("login success!");
 				customer.setEmail(usernameField.getText());
 				customer.setPassword(passwordField.getText());
+				loginModel.setUpCart(cart);
+				if (loginModel.checkProductCount(cart)) {
+					Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setHeaderText("Changes made in your cart");
+					alert.setContentText("More then avaible quantity of an item in your \n"
+							+ "cart, items have been removed");
+					alert.show();
+				}
 				logInToHome();
 			} else {
 				logInStatus.setText("Email or Password Incorrect");

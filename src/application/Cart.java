@@ -34,6 +34,10 @@ public class Cart {
 		return nElems;
 	}
 	
+	public void setCart(ObservableList<Product> cart) {
+		this.cart = cart;
+	}
+	
 	public String getSubTotal() {
 		double subTotal = 0;
 		for (int i = 0; i < nElems; i++) {
@@ -64,6 +68,25 @@ public class Cart {
 		}
 		return counter;
 	}
+
+	public int getnElems() {
+		return nElems;
+	}
+
+	public void setnElems(int nElems) {
+		this.nElems = nElems;
+	}	
 	
+	public boolean removeByID(int id) {
+		boolean result = false;
+		for (int i = 0; i < getCartSize(); i++) {
+			if (id == cart.get(i).getId()) {
+				cart.remove(i);
+				nElems--;
+				return true;
+			}
+		}
+		return result;
+	}
 
 }

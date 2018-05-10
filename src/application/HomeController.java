@@ -43,10 +43,8 @@ public class HomeController implements Initializable{
 		webView.getEngine().loadContent("<iframe width=\"435\" height=\"270\" src=\"https://www.youtube.com/embed/TIESAgMbLZY\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>");
 		setDepartMenuBar();
 		homeModel.setUpCustomer(customer);
-		homeModel.setUpCart(customer, cart);
 		System.out.println(customer);
 		cartNumber.setText(Integer.toString(cart.getCartSize()));
-		homeModel.closeConnection();
 	}
 	
 	private void setDepartMenuBar() {
@@ -71,6 +69,7 @@ public class HomeController implements Initializable{
 	}
 	
 	private void searchDepart(String depart) {
+		homeModel.closeConnection();
 		SearchController.passInDepartment(depart);
 		SearchController.passInCustomerAndCart(customer, cart);
 		try {
@@ -85,10 +84,26 @@ public class HomeController implements Initializable{
 		}
 	}
 	
+	@FXML
+	public void LogOut() {
+		homeModel.logOut(customer, cart);
+		homeModel.closeConnection();
+		try {
+			Parent loginRoot = FXMLLoader.load(getClass().getResource("loginView.fxml"));
+			Scene loginView = new Scene(loginRoot);
+			Stage window = (Stage)  (webView.getScene().getWindow());
+			window.setScene(loginView);
+			window.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 	public static void passInCustomerAndCart(Customer cus, Cart sCart) {
 		customer = cus;
 		cart = sCart;
 	}
-
 
 }

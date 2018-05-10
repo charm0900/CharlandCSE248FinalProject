@@ -55,7 +55,8 @@ public class OrderSummaryController implements Initializable {
 	private void getTotal() {
 		total = Double.parseDouble(subTotalLabel.getText()) + 
 				Double.parseDouble(taxLabel.getText()) + shippingCost;
-		totalLabel.setText(Double.toString(total));
+		String df = new DecimalFormat("##.##").format(total);
+		totalLabel.setText(df);
 	}
 
 	private void getTax() {
@@ -86,6 +87,7 @@ public class OrderSummaryController implements Initializable {
 	public void placeOrder() throws SQLException {
 		if (orderSummaryModel.placeOrder(customer, cart, total, arrivalLabel.getText())) {
 			clearCart();
+			orderSummaryModel.updateProducts();
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			alert.setHeaderText("Order Placed");
 			alert.setContentText("Your order ID: " + orderSummaryModel.getOrderID());
@@ -99,7 +101,7 @@ public class OrderSummaryController implements Initializable {
 	}
 
 	private void clearCart() {
-		orderSummaryModel.clearCart(customer, cart);
+		orderSummaryModel.clearCart(customer);
 		cart = new Cart();
 	}
 
@@ -131,6 +133,23 @@ public class OrderSummaryController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	@FXML
+	public void goHome() {
+		orderSummaryModel.closeConnection();
+		HomeController.passInCustomerAndCart(customer, cart);
+		try {
+			Parent homeRoot = FXMLLoader.load(getClass().getResource("HomeView.fxml"));
+			Scene homeView = new Scene(homeRoot);
+			Stage window = (Stage) arrivalLabel.getScene().getWindow();
+			window.setScene(homeView);
+			window.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 	
 	public static void passInCustomerAndCart(Customer cus, Cart sCart) {
 		customer = cus;

@@ -156,6 +156,21 @@ public class CartController implements Initializable {
 			e.printStackTrace();
 		}
 	}
+	
+	@FXML
+	public void goHome() {
+		HomeController.passInCustomerAndCart(customer, cart);
+		try {
+			Parent homeRoot = FXMLLoader.load(getClass().getResource("HomeView.fxml"));
+			Scene homeView = new Scene(homeRoot);
+			Stage window = (Stage) cartItems.getScene().getWindow();
+			window.setScene(homeView);
+			window.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static void passInCustomerAndCart(Customer cus, Cart sCart) {
 		customer = cus;

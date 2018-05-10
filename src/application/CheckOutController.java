@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -22,8 +23,8 @@ public class CheckOutController implements Initializable {
 	private static Customer customer;
 	private ToggleGroup shippingGroup = new ToggleGroup();
 	private double shippingCost = 0.0;
-	private ShippingInfo sInfo;
-	private PaymentMethod pInfo;
+	private ShippingInfo sInfo = new ShippingInfo();
+	private PaymentMethod pInfo = new PaymentMethod();
 
 	@FXML
 	private TextField addressTF;
@@ -53,6 +54,12 @@ public class CheckOutController implements Initializable {
 	private ComboBox<String> yearCB;
 	@FXML
 	private Label cartNumber;
+	@FXML
+	private Label checkOutStatus;
+	@FXML
+	private CheckBox rememberCardCheckBox;
+	@FXML
+	private CheckBox rememberAddressCheckBox;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -100,6 +107,7 @@ public class CheckOutController implements Initializable {
 		String[] fThenLName = pInfo.getCardHolderName().split(" ");
 		ccHolderFnameTF.setText(fThenLName[0]);
 		ccHolderLnameTF.setText(fThenLName[1]);
+		System.out.println("last name on card " + fThenLName[1].toString());
 		ccNumTF.setText(pInfo.getCcNum());
 		ccccvNumTF.setText(pInfo.getCcvNum());
 		String[] monthThenYear = pInfo.getExpireDate().split(" ");
@@ -117,6 +125,16 @@ public class CheckOutController implements Initializable {
 	@FXML
 	public void goToOrderSummary() {
 		if (checkIfEverythingFilledOut()) {
+			if (rememberAddressCheckBox.isSelected() && shippingInfoNotChanged()) {
+				System.out.println("Saving address");
+				getSInfo();
+				checkOutModel.rememberAddress(sInfo, customer);
+			}
+			if (rememberCardCheckBox.isSelected() && pInfoNotChanged()) {
+				System.out.println("Saving payment info");
+				getPInfo();
+				checkOutModel.rememberCard(pInfo, customer);
+			}
 			OrderSummaryController.passInCustomerAndCart(customer, cart);
 			OrderSummaryController.passInCheckOutInfo(sInfo, pInfo, shippingCost);
 			checkOutModel.closeConnection();
@@ -131,11 +149,99 @@ public class CheckOutController implements Initializable {
 				e.printStackTrace();
 			}
 		}
+		checkOutStatus.setText("Please Fill in all fields");
+	}
+	
+	private boolean pInfoNotChanged() {
+		String name = ccHolderFnameTF.getText() +" "+ ccHolderLnameTF.getText();
+		if (!name.equals(pInfo.getCardHolderName()))
+			return true;
+		if (!ccNumTF.getText().equals(pInfo.getCcNum()))
+			return true;
+		if (!ccccvNumTF.getText().equals(pInfo.getCcvNum()))
+			return true;
+		String date = monthCB.getValue() +" "+ yearCB.getValue();
+		if (!date.equals(pInfo.getExpireDate()))
+			return true;
+		
+		return false;
 	}
 
-	private boolean checkIfEverythingFilledOut() {
-		// TODO Auto-generated method stub
+	private boolean shippingInfoNotChanged() {
+		if (!addressTF.getText().equals(sInfo.getAddress())) 
+			return false;
+		if (!cityTF.getText().equals(sInfo.getCity()))
+			return false;
+		if (!stateTF.getText().equals(sInfo.getState()))
+			return false;
+		if (!phoneNumbTF.getText().equals(sInfo.getPhoneNum()))
+			return false;
+
 		return true;
+	}
+
+	private void getPInfo() {
+		pInfo.setCardHolderName(ccHolderFnameTF.getText() +" "+ ccHolderLnameTF.getText());
+		pInfo.setCcNum(ccNumTF.getText());
+		pInfo.setCcvNum(ccccvNumTF.getText());
+		pInfo.setExpireDate(monthCB.getValue() +" "+ yearCB.getValue());
+	}
+
+	private void getSInfo() {
+		sInfo.setAddress(addressTF.getText());
+		sInfo.setCity(cityTF.getText());
+		sInfo.setPhoneNum(phoneNumbTF.getText());
+		sInfo.setState(stateTF.getText());
+	}
+
+	@FXML
+	public void goHome() {
+		checkOutModel.closeConnection();
+		HomeController.passInCustomerAndCart(customer, cart);
+		try {
+			Parent homeRoot = FXMLLoader.load(getClass().getResource("HomeView.fxml"));
+			Scene homeView = new Scene(homeRoot);
+			Stage window = (Stage) addressTF.getScene().getWindow();
+			window.setScene(homeView);
+			window.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+	private boolean checkIfEverythingFilledOut() {
+		boolean result = true;
+		if (addressTF.getText().equals(""))
+			return false;
+		if (cityTF.getText().equals(""))
+			return false;
+		if (stateTF.getText().equals(""))
+			return false;
+		if (phoneNumbTF.getText().equals(""))
+			return false;
+		if (economyShipRB.getText().equals(""))
+			return false;
+		if (standardShipRB.getText().equals(""))
+			return false;
+		if (expeditedShipRB.getText().equals(""))
+			return false;
+		if (ccHolderFnameTF.getText().equals(""))
+			return false;
+		if (ccHolderLnameTF.getText().equals(""))
+			return false;
+		if (ccNumTF.getText().equals(""))
+			return false;
+		if (ccccvNumTF.getText().equals(""))
+			return false;
+		if (monthCB.getValue().equals("MM"))
+			return false;
+		if (yearCB.getValue().equals("YYYY"))
+			return false;
+
+		
+		return result;
 	}
 
 	public static void passInCustomerAndCart(Customer cus, Cart sCart) {

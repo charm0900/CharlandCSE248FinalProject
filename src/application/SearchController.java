@@ -159,9 +159,9 @@ public class SearchController implements Initializable {
 //		});
 	}
 
-	private void closeRequest() {
-		
-	}
+//	private void closeRequest() {
+//		
+//	}
 
 	@FXML
 	public void goToCart() {
@@ -181,6 +181,7 @@ public class SearchController implements Initializable {
 	@FXML
 	public void goHome() {
 		HomeController.passInCustomerAndCart(customer, cart);
+		searchModel.closeConnection();
 		try {
 			Parent homeRoot = FXMLLoader.load(getClass().getResource("HomeView.fxml"));
 			Scene homeView = new Scene(homeRoot);

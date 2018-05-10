@@ -12,27 +12,28 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.web.WebView?>
 
-<AnchorPane prefHeight="600.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomeController">
+<AnchorPane prefHeight="594.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="62.0" layoutY="74.0" stroke="BLACK" strokeType="INSIDE" width="850.0" />
       <ImageView fx:id="restore" fitHeight="116.0" fitWidth="374.0" layoutX="238.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../restoreLogo.png" />
          </image></ImageView>
-      <WebView fx:id="webView" layoutX="368.0" layoutY="184.0" prefHeight="288.0" prefWidth="450.0" />
       <MenuBar layoutY="117.0" prefHeight="27.0" prefWidth="850.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Home" />
+          <Menu mnemonicParsing="false" text="Home">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#goHome" text="Go To Home" />
+               </items></Menu>
           <Menu mnemonicParsing="false" text="          Departments          ">
             <items>
-                <MenuItem fx:id="appliancesMenuItem" mnemonicParsing="false" text="Appliances" />
-                <MenuItem fx:id="cabinetsMenuItem" mnemonicParsing="false" text="Cabinets" />
-                  <MenuItem fx:id="doorsMenuItem" mnemonicParsing="false" text="Doors" />
-                  <MenuItem fx:id="windowsMenuItem" mnemonicParsing="false" text="Windows" />
-                  <MenuItem fx:id="furnitureMenuItem" mnemonicParsing="false" text="Furniture" />
-                  <MenuItem fx:id="plumbingMenuItem" mnemonicParsing="false" text="Plumbing Items" />
+                <MenuItem mnemonicParsing="false" text="Appliances" />
+                <MenuItem mnemonicParsing="false" text="Cabinets" />
+                  <MenuItem mnemonicParsing="false" text="Doors" />
+                  <MenuItem mnemonicParsing="false" text="Windows" />
+                  <MenuItem mnemonicParsing="false" text="Furniture" />
+                  <MenuItem mnemonicParsing="false" text="Plumbing Items" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false">
@@ -51,8 +52,7 @@
             </Menu>
             <Menu mnemonicParsing="false" text="                  Account                  ">
               <items>
-                <MenuItem mnemonicParsing="false" text="Account Management" />
-                  <MenuItem mnemonicParsing="false" onAction="#LogOut" text="Log Out" />
+                <MenuItem mnemonicParsing="false" text="Action 1" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="         ">
@@ -72,7 +72,7 @@
             <Insets left="20.0" />
          </padding>
       </MenuBar>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutY="548.0" stroke="BLACK" strokeType="INSIDE" width="850.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutY="548.0" stroke="BLACK" strokeType="INSIDE" width="850.0" />
       <Label fx:id="cartNumber" layoutX="813.0" layoutY="123.0" prefHeight="20.0" prefWidth="34.0" text="0" />
       <Hyperlink layoutX="45.0" layoutY="560.0" prefHeight="28.0" prefWidth="93.0" text="Track Orders" textFill="#262323" underline="true">
          <font>
@@ -84,16 +84,12 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label alignment="TOP_LEFT" layoutX="53.0" layoutY="184.0" prefHeight="288.0" prefWidth="304.0" text="Welcome to Habitat for Humanity's new online shopping system! The ReStore is a donation based retail store open to the general public. All of the proceeds of the ReStore benefit its parent organization, Habitat for Humanity. Your dollars fund the building of Habitat homes all over the world. Thank you for supporting the community!" wrapText="true">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
       <Label alignment="CENTER" contentDisplay="TOP" layoutX="332.0" layoutY="574.0" prefHeight="20.0" prefWidth="158.0" text="Oline System Created by Matthew Charland" wrapText="true">
          <font>
             <Font size="8.0" />
          </font>
       </Label>
+      <AnchorPane layoutY="151.0" prefHeight="396.0" prefWidth="850.0" />
    </children>
    <opaqueInsets>
       <Insets />

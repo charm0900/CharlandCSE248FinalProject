@@ -26,7 +26,10 @@
          </image></ImageView>
       <MenuBar layoutY="117.0" prefHeight="27.0" prefWidth="850.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Home" />
+          <Menu mnemonicParsing="false" text="Home">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#goHome" text="Go To Home" />
+               </items></Menu>
           <Menu mnemonicParsing="false" text="          Departments          ">
             <items>
                 <MenuItem mnemonicParsing="false" text="Appliances" />
