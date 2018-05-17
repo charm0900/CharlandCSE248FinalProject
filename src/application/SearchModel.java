@@ -69,6 +69,10 @@ public class SearchModel {
 	public void setDepartment(String department) {
 		this.department = department;
 	}
+	
+	public String getDepartment() {
+		return department;
+	}
 //	
 //    private  java.sql.Date convertUtilToSql(java.util.Date uDate) {
 //        java.sql.Date sDate = new java.sql.Date(uDate.getTime());

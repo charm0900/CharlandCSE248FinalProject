@@ -28,7 +28,8 @@ public class LoginController implements Initializable {
 	private TextField usernameField;
 	@FXML
 	private PasswordField passwordField;
-	
+	@FXML
+	private Label empPortalLabel;
 	
 //	public static Scene getScene() {
 //		if (scene == null) {
@@ -71,6 +72,16 @@ public class LoginController implements Initializable {
 			Scene signUpView = new Scene(signUpRoot);
 			Stage window =  (Stage) ((Node)(event.getSource())).getScene().getWindow();
 			window.setScene(signUpView);
+//			window.show();
+	}
+	
+	@FXML
+	public void goToEmployeePortal() throws IOException {
+		loginModel.closeConnection();
+		Parent empRoot = FXMLLoader.load(getClass().getResource("EmployeeLoginView.fxml"));
+			Scene empView = new Scene(empRoot);
+			Stage window =  (Stage) usernameField.getScene().getWindow();
+			window.setScene(empView);
 //			window.show();
 	}
 

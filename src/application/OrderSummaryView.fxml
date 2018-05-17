@@ -4,10 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,50 +20,6 @@
             <Image url="@../../restoreLogo.png" />
          </image></ImageView>
       <MenuBar layoutY="117.0" prefHeight="27.0" prefWidth="850.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Home">
-               <items>
-                  <MenuItem mnemonicParsing="false" onAction="#goHome" text="Go To Home" />
-               </items></Menu>
-          <Menu mnemonicParsing="false" text="          Departments          ">
-            <items>
-                <MenuItem fx:id="appliancesMenuItem" mnemonicParsing="false" text="Appliances" />
-                <MenuItem fx:id="cabinetsMenuItem" mnemonicParsing="false" text="Cabinets" />
-                  <MenuItem fx:id="doorsMenuItem" mnemonicParsing="false" text="Doors" />
-                  <MenuItem fx:id="windowsMenuItem" mnemonicParsing="false" text="Windows" />
-                  <MenuItem fx:id="furnitureMenuItem" mnemonicParsing="false" text="Furniture" />
-                  <MenuItem fx:id="plumbingMenuItem" mnemonicParsing="false" text="Plumbing Items" />
-            </items>
-          </Menu>
-            <Menu mnemonicParsing="false">
-               <graphic>
-                  <ImageView fitHeight="22.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../searchIcon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Menu>
-            <Menu mnemonicParsing="false">
-               <graphic>
-                  <TextField prefHeight="25.0" prefWidth="310.0" />
-               </graphic>
-            </Menu>
-            <Menu mnemonicParsing="false" text="                  Account                  ">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-              </items>
-            </Menu>
-            <Menu mnemonicParsing="false" text="         ">
-               <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../cartIcon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Menu>
-        </menus>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -75,12 +28,6 @@
          </padding>
       </MenuBar>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutY="548.0" stroke="BLACK" strokeType="INSIDE" width="850.0" />
-      <Label fx:id="cartNumber" layoutX="813.0" layoutY="123.0" prefHeight="20.0" prefWidth="34.0" text="0" />
-      <Hyperlink layoutX="45.0" layoutY="560.0" prefHeight="28.0" prefWidth="93.0" text="Track Orders" textFill="#262323" underline="true">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Hyperlink>
       <Label layoutX="581.0" layoutY="564.0" text="Follow us on FaceBook and Instagram!" underline="true">
          <font>
             <Font size="14.0" />
@@ -138,6 +85,14 @@
             <Hyperlink layoutX="271.0" layoutY="334.0" onAction="#backToCheckOut" text="&lt;- Back to Check Out" />
          </children>
       </AnchorPane>
+      <Button fx:id="homeBtn" layoutY="74.0" mnemonicParsing="false" onAction="#goHome" prefHeight="42.0" prefWidth="78.0" style="-fx-background-color: DODGERBLUE; -fx-border-color: black;" text="Home" />
+      <Button layoutX="774.0" layoutY="74.0" mnemonicParsing="false" onAction="#goToCart" prefHeight="42.0" prefWidth="78.0" style="-fx-background-color: DODGERBLUE; -fx-border-color: black;" />
+      <Label fx:id="cartNumber" layoutX="813.0" layoutY="77.0" onMouseClicked="#goToCart" prefHeight="34.0" prefWidth="34.0" text="0" />
+      <ImageView fitHeight="24.0" fitWidth="28.0" layoutX="781.0" layoutY="83.0" onMouseClicked="#goToCart" onMousePressed="#goToCart" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../cartIcon.png" />
+         </image>
+      </ImageView>
    </children>
    <opaqueInsets>
       <Insets />

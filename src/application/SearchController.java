@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TableCell;
@@ -47,14 +48,18 @@ public class SearchController implements Initializable {
 	private TableColumn<Product, Integer> colQuanity;
 	@FXML
 	private TableColumn<Product, Date> colDate;
-	// @FXML
-	// private TableColumn<Product, String> colDescrip;
+	 @FXML
+	 private TableColumn<Product, String> colDescrip;
 	@FXML
 	private TableColumn<Product, String> addToCart;
 	@FXML
 	private Label cartNumber;
 	@FXML
 	private Label itemStatus;
+	@FXML
+	private Button homeBtn;
+	@FXML
+	private Label shopLabel;
 
 
 	@Override
@@ -66,36 +71,40 @@ public class SearchController implements Initializable {
 		colQuanity.setCellValueFactory(new PropertyValueFactory<>("quanity"));
 		colDate.setCellValueFactory(new PropertyValueFactory<>("dateAdded"));
 		searchResults.setItems(searchModel.searchByDepartment());
-		// colDescrip.setCellFactory(new
-		// Callback<TableColumn<Product,String>,TableCell<Product,String>>() {
-		//
-		// @Override
-		// public TableCell<Product, String> call(TableColumn<Product, String> arg0) {
-		// TableCell<Product, String> cell = new TableCell<Product, String>() {
-		// final Label btn = new Label("View description");
-		//
-		// @Override
-		// public void updateItem(String item, boolean empty) {
-		// super.updateItem(item, empty);
-		// if (empty) {
-		// setGraphic(null);
-		// setText(null);
-		// } else {
-		// btn.setOnMouseClicked(event -> {
-		// Product product = getTableView().getItems().get(getIndex());
-		// product.setQuanity(99);
-		// getTableView().refresh();
-		// // add product to cart
-		// });
-		// setGraphic(btn);
-		// setText(null);
-		// }
-		// }
-		// };
-		// return cell;
-		// }
-		//
-		// });
+		colDescrip.setCellFactory(new Callback<TableColumn<Product, String>, TableCell<Product, String>>() {
+
+			@Override
+			public TableCell<Product, String> call(TableColumn<Product, String> arg0) {
+				TableCell<Product, String> cell = new TableCell<Product, String>() {
+					final Hyperlink qLabel = new Hyperlink();
+
+					@Override
+					public void updateItem(String item, boolean empty) {
+						super.updateItem(item, empty);
+						if (empty) {
+							setGraphic(null);
+							setText(null);
+						} else {
+							 Product product = getTableView().getItems().get(getIndex());
+							qLabel.setText("Click Here");
+							qLabel.setOnAction(e->{
+								Alert alert = new Alert(AlertType.INFORMATION);
+								alert.setHeaderText("Description");
+								alert.setContentText(product.getDescription() + "\n"
+										+ "Width=" + product.getWidth()
+										+ "\tHeight=" + product.getHeight() 
+										+ "\tLength=" + product.getLength());
+								alert.show();
+							});
+							setGraphic(qLabel);
+							setText(null);
+						}
+					}
+				};
+				return cell;
+			}
+
+		});
 		addToCart.setCellFactory(new Callback<TableColumn<Product, String>, TableCell<Product, String>>() {
 
 			@Override
@@ -152,6 +161,7 @@ public class SearchController implements Initializable {
 		});
 		searchModel.closeConnection();
 		cartNumber.setText(Integer.toString(cart.getCartSize()));
+		shopLabel.setText("Shop " + searchModel.getDepartment());
 //		stage = (Stage) searchResults.getScene().getWindow();
 //		stage.setOnCloseRequest(e-> {
 //			e.consume();
@@ -166,6 +176,7 @@ public class SearchController implements Initializable {
 	@FXML
 	public void goToCart() {
 		CartController.passInCustomerAndCart(customer, cart);
+		searchModel.closeConnection();
 		try {
 			Parent searchRoot = FXMLLoader.load(getClass().getResource("CartView.fxml"));
 			Scene searchView = new Scene(searchRoot);

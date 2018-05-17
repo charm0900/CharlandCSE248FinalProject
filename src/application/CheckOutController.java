@@ -169,15 +169,15 @@ public class CheckOutController implements Initializable {
 
 	private boolean shippingInfoNotChanged() {
 		if (!addressTF.getText().equals(sInfo.getAddress())) 
-			return false;
+			return true;
 		if (!cityTF.getText().equals(sInfo.getCity()))
-			return false;
+			return true;
 		if (!stateTF.getText().equals(sInfo.getState()))
-			return false;
+			return true;
 		if (!phoneNumbTF.getText().equals(sInfo.getPhoneNum()))
-			return false;
+			return true;
 
-		return true;
+		return false;
 	}
 
 	private void getPInfo() {
@@ -203,6 +203,22 @@ public class CheckOutController implements Initializable {
 			Scene homeView = new Scene(homeRoot);
 			Stage window = (Stage) addressTF.getScene().getWindow();
 			window.setScene(homeView);
+			window.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void goToCart() {
+		checkOutModel.closeConnection();
+		CartController.passInCustomerAndCart(customer, cart);
+		try {
+			Parent searchRoot = FXMLLoader.load(getClass().getResource("CartView.fxml"));
+			Scene searchView = new Scene(searchRoot);
+			Stage window = (Stage) addressTF.getScene().getWindow();
+			window.setScene(searchView);
 			window.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

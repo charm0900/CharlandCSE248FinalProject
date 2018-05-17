@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.ImageView;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
@@ -35,6 +36,9 @@ public class HomeController implements Initializable{
 	private MenuItem plumbingMenuItem;
 	@FXML 
 	private Label cartNumber;
+	@FXML
+	private ImageView cartIV;
+	
 
 	
 	// required when implements initializable
@@ -99,6 +103,54 @@ public class HomeController implements Initializable{
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@FXML
+	public void editAccount() {
+		homeModel.closeConnection();
+		AccountManagementController.passInCustomerAndCart(customer, cart);
+		try {
+			Parent editRoot = FXMLLoader.load(getClass().getResource("AccManView.fxml"));
+			Scene editView = new Scene(editRoot);
+			Stage window = (Stage)  (webView.getScene().getWindow());
+			window.setScene(editView);
+			window.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void trackOrder() {
+		homeModel.closeConnection();
+		TrackOrderController.passInCustomerAndCart(customer, cart);
+		try {
+			Parent editRoot = FXMLLoader.load(getClass().getResource("TrackOrderView.fxml"));
+			Scene editView = new Scene(editRoot);
+			Stage window = (Stage)  (webView.getScene().getWindow());
+			window.setScene(editView);
+			window.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void goToCart() {
+		homeModel.closeConnection();
+		CartController.passInCustomerAndCart(customer, cart);
+		try {
+			Parent searchRoot = FXMLLoader.load(getClass().getResource("CartView.fxml"));
+			Scene searchView = new Scene(searchRoot);
+			Stage window = (Stage) webView.getScene().getWindow();
+			window.setScene(searchView);
+			window.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void passInCustomerAndCart(Customer cus, Cart sCart) {

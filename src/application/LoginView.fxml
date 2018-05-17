@@ -39,5 +39,6 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="80.0" layoutY="524.0" stroke="BLACK" strokeType="INSIDE" width="850.0" />
       <Label layoutX="302.0" layoutY="544.0" text="Don't have an account?" />
       <Button layoutX="474.0" layoutY="540.0" mnemonicParsing="false" onAction="#SignUp" text="Sign Up Here" />
+      <Label fx:id="empPortalLabel" layoutX="34.0" layoutY="544.0" onMouseClicked="#goToEmployeePortal" text="Employee Portal Click Here" />
    </children>
 </AnchorPane>

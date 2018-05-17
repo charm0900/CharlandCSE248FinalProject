@@ -41,6 +41,8 @@ public class OrderSummaryController implements Initializable {
 	private Label taxLabel;
 	@FXML
 	private Label totalLabel;
+	@FXML
+	private Label cartNumber;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -50,6 +52,7 @@ public class OrderSummaryController implements Initializable {
 		getTax();
 		getTotal();
 		System.out.println("# of items in cart" + cart.getCart().get(0).getQuanity());
+		cartNumber.setText(Integer.toString(cart.getCartSize()));
 	}
 	
 	private void getTotal() {
@@ -88,6 +91,7 @@ public class OrderSummaryController implements Initializable {
 		if (orderSummaryModel.placeOrder(customer, cart, total, arrivalLabel.getText())) {
 			clearCart();
 			orderSummaryModel.updateProducts();
+			orderSummaryModel.closeConnection();
 			Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			alert.setHeaderText("Order Placed");
 			alert.setContentText("Your order ID: " + orderSummaryModel.getOrderID());
@@ -122,6 +126,7 @@ public class OrderSummaryController implements Initializable {
 
 	@FXML
 	public void backToCheckOut() {
+		orderSummaryModel.closeConnection();
 		try {
 			Parent checkOutRoot = FXMLLoader.load(getClass().getResource("CheckOutView.fxml"));
 			Scene CheckOutView = new Scene(checkOutRoot);
@@ -143,6 +148,21 @@ public class OrderSummaryController implements Initializable {
 			Scene homeView = new Scene(homeRoot);
 			Stage window = (Stage) arrivalLabel.getScene().getWindow();
 			window.setScene(homeView);
+			window.show();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@FXML
+	public void goToCart() {
+		CartController.passInCustomerAndCart(customer, cart);
+		try {
+			Parent searchRoot = FXMLLoader.load(getClass().getResource("CartView.fxml"));
+			Scene searchView = new Scene(searchRoot);
+			Stage window = (Stage) arrivalLabel.getScene().getWindow();
+			window.setScene(searchView);
 			window.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

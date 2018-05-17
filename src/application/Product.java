@@ -29,6 +29,9 @@ public class Product {
 		this.width = width;
 	}
 
+	public Product() {
+	}
+
 	public int getId() {
 		return id;
 	}
